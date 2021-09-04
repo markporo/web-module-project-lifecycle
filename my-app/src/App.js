@@ -12,6 +12,7 @@ class App extends React.Component {
     this.state = {
       userInfo: [],
       followers: [],
+      currentUser: user,
     };
   }
 
@@ -19,8 +20,8 @@ class App extends React.Component {
     console.log("App: Component Did Mount");
     // axios call to get friends user is following
 
-    const userInfoRequest = axios.get(`https://api.github.com/users/${user}`);
-    const followersRequest = axios.get(`https://api.github.com/users/${user}/followers`);
+    const userInfoRequest = axios.get(`https://api.github.com/users/${this.state.currentUser}`);
+    const followersRequest = axios.get(`https://api.github.com/users/${this.state.currentUser}/followers`);
 
     axios
       .all([userInfoRequest, followersRequest])
@@ -52,9 +53,16 @@ class App extends React.Component {
     console.log("old state: ", prevState);
     console.log("new state: ", this.state);
 
-    if (prevState.followers.length !== this.state.followers.length) {
+    if (prevState.currentUser !== this.state.followers.length) {
       console.log("a change was made");
+
     }
+  }
+
+  handleClick = e => {
+    this.setState({
+      currentUser: e.target.value,
+    });
   }
 
 
@@ -62,9 +70,10 @@ class App extends React.Component {
     console.log("App: Component renders");
     return (
       <div className="fullContainer" >
+        <input placeholder="Type Your Github UserName" value={this.state.currentUser} ></input> <button>Click for Github Info</button>
         <h1 className="mainTitle">{this.state.userInfo.name}'s Github Stats and Followers</h1>
-        <div clasName='userDiv'>
-          {<img src={this.state.userInfo.avatar_url} alt={user}></img>}
+        <div className='userDiv'>
+          {<img className="userImage" src={this.state.userInfo.avatar_url} alt={user}></img>}
           <div>
             <p style={{ display: (this.state.userInfo.name) ? "block" : "none" }}>Name: {this.state.userInfo.name}</p>
             <p style={{ display: (this.state.userInfo.location) ? "block" : "none" }}>Home: {this.state.userInfo.location}</p>

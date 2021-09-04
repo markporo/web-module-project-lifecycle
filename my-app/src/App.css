@@ -39,26 +39,57 @@
 
 body {
   background-color: rgb(61, 73, 95);
-  color: whitesmoke;
+  color: rgb(231, 222, 222);
+}
+
+input {
+  margin: 15px;
+  height: 40px;
+  width: 300px;
+}
+
+button {
+  margin: 15px;
+  height: 40px;
+  width: 310px;
+  background-color: rgb(138, 197, 221);
 }
 
 .fullContainer {
   text-align: center;
   margin: 0 auto;
+  width: 75%;
+  max-width: 800px;
 }
 
 .mainTitle {
   text-align: center;
 }
 
+.userImage {
+  border: 1px solid black;
+  border-radius: 15px 15px 0 0;
+  width: 100%;
+}
+
 .userDiv {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border: 2px solid black;
   border-radius: 15px;
   margin-bottom: 20px;
   padding: 0;
-  width: 85%;
+  width: 90%;
+  color: black;
+  background-color: rgb(172, 160, 160);
+}
+
+.userDiv p {
+  font-size: x-large;
 }
 
 .followersDiv {
